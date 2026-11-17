@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mis XV · Valentina</title>
+  <meta name="description" content="¡Estás invitad@ a los XV años de Valentina! Sábado 20 de marzo de 2027." />
+  <meta name="theme-color" content="#fdeef4" />
+
+  <!-- Vista previa al compartir (cambia por la URL completa al publicar) -->
+  <meta property="og:title" content="🎀 Mis XV · Valentina" />
+  <meta property="og:description" content="Sábado 20 de marzo 2027 · ¡Confirma tu asistencia!" />
+  <meta property="og:image" content="assets/img/splash.jpg" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,600&family=Nunito:wght@400;600;800&family=Caveat:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="locked">
+
+  <!-- Sprites SVG reutilizables -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <linearGradient id="bowGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#ffc2d9"/><stop offset="1" stop-color="#f48fb8"/>
+      </linearGradient>
+      <symbol id="bow" viewBox="0 0 120 100">
+        <path d="M58 46 C40 20 8 14 6 34 C4 54 36 58 58 50Z" fill="url(#bowGrad)" stroke="#e5779f" stroke-width="2.5"/>
+        <path d="M62 46 C80 20 112 14 114 34 C116 54 84 58 62 50Z" fill="url(#bowGrad)" stroke="#e5779f" stroke-width="2.5"/>
+        <path d="M54 52 L36 94 L48 88 L52 98 L60 56Z" fill="#f7a6c6" stroke="#e5779f" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M66 52 L84 94 L72 88 L68 98 L60 56Z" fill="#f7a6c6" stroke="#e5779f" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M22 30 C30 28 40 34 48 42" stroke="#fff" stroke-width="3" fill="none" opacity=".6" stroke-linecap="round"/>
+        <path d="M98 30 C90 28 80 34 72 42" stroke="#fff" stroke-width="3" fill="none" opacity=".6" stroke-linecap="round"/>
+        <rect x="50" y="38" width="20" height="18" rx="7" fill="#f7a6c6" stroke="#e5779f" stroke-width="2.5"/>
+      </symbol>
+      <symbol id="butterfly" viewBox="0 0 100 80">
+        <g class="wing-l"><path d="M48 38 C30 0 0 6 6 28 C10 42 30 42 48 40Z" fill="currentColor"/><path d="M48 42 C30 46 14 62 24 72 C34 80 46 60 48 44Z" fill="currentColor" opacity=".75"/></g>
+        <g class="wing-r"><path d="M52 38 C70 0 100 6 94 28 C90 42 70 42 52 40Z" fill="currentColor"/><path d="M52 42 C70 46 86 62 76 72 C66 80 54 60 52 44Z" fill="currentColor" opacity=".75"/></g>
+        <rect x="47" y="24" width="6" height="40" rx="3" fill="#6b5585"/>
+        <path d="M49 25 C46 16 42 12 38 10 M51 25 C54 16 58 12 62 10" stroke="#6b5585" stroke-width="2" fill="none" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="sparkle" viewBox="0 0 40 40">
+        <path d="M20 0 C22 14 26 18 40 20 C26 22 22 26 20 40 C18 26 14 22 0 20 C14 18 18 14 20 0Z" fill="currentColor"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- ===================== SPLASH ===================== -->
+  <div class="splash" id="splash" role="dialog" aria-label="Abrir invitación">
+    <div class="splash__blob splash__blob--a" aria-hidden="true"></div>
+    <div class="splash__blob splash__blob--b" aria-hidden="true"></div>
+    <div class="splash__blob splash__blob--c" aria-hidden="true"></div>
+
+    <svg class="fly fly--1" aria-hidden="true"><use href="#butterfly"/></svg>
+    <svg class="fly fly--2" aria-hidden="true"><use href="#butterfly"/></svg>
+    <svg class="fly fly--3" aria-hidden="true"><use href="#butterfly"/></svg>
+    <svg class="spark spark--1" aria-hidden="true"><use href="#sparkle"/></svg>
+    <svg class="spark spark--2" aria-hidden="true"><use href="#sparkle"/></svg>
+    <svg class="spark spark--3" aria-hidden="true"><use href="#sparkle"/></svg>
+    <svg class="spark spark--4" aria-hidden="true"><use href="#sparkle"/></svg>
+
+    <p class="splash__kicker">Tienes una invitación especial</p>
+
+    <div class="env" id="env">
+      <div class="env__back"></div>
+      <div class="env__card">
+        <img src="assets/img/splash.jpg" alt="" />
+        <div class="env__card-text">
+          <span>mis XV años</span>
+          <strong>Valentina</strong>
+        </div>
+      </div>
+      <div class="env__front"></div>
+      <div class="env__flap"></div>
+      <button class="env__bow" id="bowBtn" aria-label="Desatar el moño y abrir">
+        <svg><use href="#bow"/></svg>
+      </button>
+    </div>
+
+    <div class="splash__tag">
+      <small>Para</small>
+      <strong id="splashGuest">ti</strong>
+    </div>
+
+    <button class="btn btn--primary splash__btn" id="openBtn">Abrir invitación 🎀</button>
+  </div>
+
+  <canvas id="petals" aria-hidden="true"></canvas>
+
+  <!-- ===================== HERO ===================== -->
+  <header class="hero" id="inicio">
+    <div class="hero__bg" aria-hidden="true"></div>
+
+    <div class="hero__copy">
+      <p class="hero__kicker">✿ Te invito a celebrar mis ✿</p>
+      <h1 class="hero__title">
+        <span class="hero__xv">XV</span>
+        <span class="hero__name">Valentina</span>
+      </h1>
+      <div class="hero__chips">
+        <span class="chip chip--pink">Sábado</span>
+        <span class="chip chip--lilac">20 · 03 · 2027</span>
+        <span class="chip chip--mint">8:00 PM</span>
+      </div>
+      <a href="#rsvp" class="btn btn--primary">Confirmar asistencia</a>
+    </div>
+
+    <div class="hero__photo">
+      <div class="arch arch--outline" aria-hidden="true"></div>
+      <div class="arch">
+        <img src="assets/img/corona.jpg" alt="Valentina con su corona" />
+      </div>
+      <svg class="hero__badge" viewBox="0 0 120 120" aria-hidden="true">
+        <defs><path id="circlePath" d="M60 60 m-44 0 a44 44 0 1 1 88 0 a44 44 0 1 1 -88 0"/></defs>
+        <circle cx="60" cy="60" r="58" fill="#fff7d6"/>
+        <text font-size="13" font-weight="800" letter-spacing="3.2" fill="#6b5585">
+          <textPath href="#circlePath">MIS QUINCE AÑOS • MIS QUINCE AÑOS • </textPath>
+        </text>
+      </svg>
+      <span class="hero__badge-center" aria-hidden="true">15</span>
+      <svg class="hero__bow" aria-hidden="true"><use href="#bow"/></svg>
+      <svg class="hero__fly" aria-hidden="true"><use href="#butterfly"/></svg>
+      <span class="sticker-note" aria-hidden="true">¡no faltes! ♡</span>
+    </div>
+  </header>
+
+  <!-- Cinta -->
+  <div class="ribbon" aria-hidden="true">
+    <div class="ribbon__track">
+      <span>Valentina XV</span><span>♡</span><span>20.03.27</span><span>✿</span><span>#ValeXV</span><span>♡</span><span>Baila conmigo</span><span>✿</span>
+      <span>Valentina XV</span><span>♡</span><span>20.03.27</span><span>✿</span><span>#ValeXV</span><span>♡</span><span>Baila conmigo</span><span>✿</span>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- ===================== MENSAJE ===================== -->
+    <section class="section note-section reveal">
+      <div class="note">
+        <span class="tape" aria-hidden="true"></span>
+        <p class="note__hello" id="guestGreeting">¡Hola!</p>
+        <p class="note__text">
+          Quince años, mil canciones favoritas y un montón de recuerdos que quiero
+          seguir haciendo contigo. Esta noche quiero reír, bailar hasta que me duelan los pies
+          y empezar esta nueva etapa rodeada de las personas que más quiero.
+          <strong>Tú eres una de ellas.</strong>
+        </p>
+        <p class="note__sign">Con cariño, Vale 🎀</p>
+        <figure class="note__polaroid">
+          <img src="assets/img/flor.jpg" alt="Valentina en el jardín" loading="lazy" />
+        </figure>
+      </div>
+    </section>
+
+    <!-- ===================== COUNTDOWN + CALENDARIO ===================== -->
+    <section class="section save reveal">
+      <p class="eyebrow">save the date</p>
+      <h2 class="title">Cuenta <em>regresiva</em></h2>
+
+      <div class="countdown">
+        <div class="cd cd--pink"><span id="cd-d">00</span><small>días</small></div>
+        <div class="cd cd--lilac"><span id="cd-h">00</span><small>horas</small></div>
+        <div class="cd cd--mint"><span id="cd-m">00</span><small>min</small></div>
+        <div class="cd cd--butter"><span id="cd-s">00</span><small>seg</small></div>
+      </div>
+
+      <div class="calendar">
+        <div class="calendar__head">
+          <span>Marzo</span><span>2027</span>
+        </div>
+        <div class="calendar__grid" id="calendar"></div>
+      </div>
+    </section>
+
+    <!-- ===================== FAMILIA ===================== -->
+    <section class="section family reveal">
+      <p class="eyebrow">con la bendición de</p>
+      <h2 class="title">Mi <em>familia</em></h2>
+      <div class="family__grid">
+        <div class="family__card family__card--pink">
+          <span class="family__icon" aria-hidden="true">♡</span>
+          <h3>Mis papás</h3>
+          <p>Laura Méndez Ríos</p>
+          <p>Ricardo Torres Vega</p>
+        </div>
+        <div class="family__card family__card--sky">
+          <span class="family__icon" aria-hidden="true">✿</span>
+          <h3>Mis padrinos</h3>
+          <p>Sofía Hernández Luna</p>
+          <p>Andrés Castillo Mora</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== LUGARES ===================== -->
+    <section class="section places reveal" id="lugares">
+      <p class="eyebrow">dónde y cuándo</p>
+      <h2 class="title">Los <em>lugares</em></h2>
+      <div class="places__grid">
+        <article class="place">
+          <div class="place__img"><img src="assets/img/iglesia.jpg" alt="Parroquia" loading="lazy" /></div>
+          <div class="place__body">
+            <span class="chip chip--lilac">6:00 PM</span>
+            <h3>Misa de acción de gracias</h3>
+            <p>Parroquia de San Rafael Arcángel<br />Av. de las Flores 214, Col. Jardines</p>
+            <a class="btn btn--soft" target="_blank" rel="noopener"
+               href="https://www.google.com/maps/search/?api=1&query=Parroquia+San+Rafael+Arcangel">Ver ubicación</a>
+          </div>
+        </article>
+        <article class="place">
+          <div class="place__img"><img src="assets/img/salon.jpg" alt="Salón de fiesta" loading="lazy" /></div>
+          <div class="place__body">
+            <span class="chip chip--pink">8:00 PM — 2:00 AM</span>
+            <h3>Recepción</h3>
+            <p>Jardín Hacienda Las Magnolias<br />Camino Real 1500, Col. Lomas del Sol</p>
+            <a class="btn btn--soft" target="_blank" rel="noopener"
+               href="https://www.google.com/maps/search/?api=1&query=Jardin+de+eventos">Ver ubicación</a>
+          </div>
+        </article>
+      </div>
+      <a class="btn btn--ghost" id="calendarBtn" target="_blank" rel="noopener" href="#">📅 Agregar a mi calendario</a>
+    </section>
+
+    <!-- ===================== ITINERARIO ===================== -->
+    <section class="section plan reveal">
+      <p class="eyebrow">el plan</p>
+      <h2 class="title">Itinerario de la <em>noche</em></h2>
+      <ol class="plan__list">
+        <li style="--c:var(--pink)"><span class="plan__icon">🥂</span><div><b>8:00 PM</b><span>Recepción y photo booth</span></div></li>
+        <li style="--c:var(--lilac)"><span class="plan__icon">👑</span><div><b>9:00 PM</b><span>Entrada de la quinceañera</span></div></li>
+        <li style="--c:var(--sky)"><span class="plan__icon">🩰</span><div><b>9:20 PM</b><span>Vals y baile sorpresa</span></div></li>
+        <li style="--c:var(--mint)"><span class="plan__icon">🍽️</span><div><b>10:00 PM</b><span>Cena</span></div></li>
+        <li style="--c:var(--butter)"><span class="plan__icon">🎧</span><div><b>11:00 PM</b><span>DJ y pista abierta</span></div></li>
+        <li style="--c:var(--peach)"><span class="plan__icon">🌮</span><div><b>12:30 AM</b><span>Tornafiesta</span></div></li>
+      </ol>
+    </section>
+
+    <!-- ===================== DRESS CODE ===================== -->
+    <section class="section dress reveal">
+      <div class="dress__card">
+        <div class="dress__img"><img src="assets/img/vestido.jpg" alt="Vestido de gala" loading="lazy" /></div>
+        <div class="dress__body">
+          <p class="eyebrow">código de vestimenta</p>
+          <h2 class="title">Formal <em>pastel</em></h2>
+          <p>Inspírate en tonos suaves: rosa, lila, menta, cielo o mantequilla.</p>
+          <div class="swatches">
+            <span style="--c:#f9cfe0" title="Rosa"></span>
+            <span style="--c:#dcccf6" title="Lila"></span>
+            <span style="--c:#c9eedf" title="Menta"></span>
+            <span style="--c:#cfe6fb" title="Cielo"></span>
+            <span style="--c:#fff0b8" title="Mantequilla"></span>
+          </div>
+          <p class="dress__note">♡ Te pedimos evitar el color <b>azul cielo</b>, es el de la quinceañera.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== GALERÍA ===================== -->
+    <section class="section gallery-section reveal">
+      <p class="eyebrow">mis momentos</p>
+      <h2 class="title">Galería <em>Vale</em></h2>
+      <div class="gallery" id="gallery">
+        <button class="gallery__item gallery__item--tall"><img src="assets/img/splash.jpg" alt="Valentina sonriendo" loading="lazy" /></button>
+        <button class="gallery__item"><img src="assets/img/portada.jpg" alt="Detalle del vestido" loading="lazy" /></button>
+        <button class="gallery__item"><img src="assets/img/flores.jpg" alt="Flores y recuerdo de XV" loading="lazy" /></button>
+        <button class="gallery__item gallery__item--tall"><img src="assets/img/pastel.jpg" alt="Pastel de XV años" loading="lazy" /></button>
+        <button class="gallery__item"><img src="assets/img/zapatillas.jpg" alt="Zapatillas de la quinceañera" loading="lazy" /></button>
+        <button class="gallery__item gallery__item--tall"><img src="assets/img/cupcakes.jpg" alt="Mesa de postres" loading="lazy" /></button>
+      </div>
+    </section>
+
+    <!-- ===================== REGALOS ===================== -->
+    <section class="section gifts reveal">
+      <div class="gifts__card">
+        <img class="gifts__bg" src="assets/img/globos.jpg" alt="" loading="lazy" />
+        <div class="gifts__content">
+          <p class="eyebrow">regalos</p>
+          <h2 class="title">Tu presencia es mi <em>mejor regalo</em></h2>
+          <div class="gifts__grid">
+            <div class="gift">
+              <span aria-hidden="true">💌</span>
+              <h3>Lluvia de sobres</h3>
+              <p>Habrá un buzón especial el día de la fiesta.</p>
+            </div>
+            <div class="gift">
+              <span aria-hidden="true">🎁</span>
+              <h3>Mesa de regalos</h3>
+              <p>Liverpool · Evento <b>#51234567</b></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== HASHTAG ===================== -->
+    <section class="section social reveal">
+      <svg class="social__fly" aria-hidden="true"><use href="#butterfly"/></svg>
+      <p>Comparte tus fotos y videos con</p>
+      <button class="social__tag" id="copyTag" title="Copiar hashtag">#ValeXV</button>
+      <small id="copyMsg" class="social__copied" aria-live="polite">toca para copiar</small>
+    </section>
+
+    <!-- ===================== RSVP ===================== -->
+    <section class="section rsvp reveal" id="rsvp">
+      <div class="rsvp__card">
+        <svg class="rsvp__bow" aria-hidden="true"><use href="#bow"/></svg>
+        <p class="eyebrow">r.s.v.p.</p>
+        <h2 class="title">¿Me <em>acompañas</em>?</h2>
+        <p class="rsvp__deadline">Confirma antes del <b>1 de marzo de 2027</b></p>
+        <p class="rsvp__passes" id="passesInfo" hidden></p>
+
+        <form id="rsvpForm" class="form" novalidate>
+          <label class="field">
+            <span>Tu nombre</span>
+            <input type="text" name="nombre" id="nombre" placeholder="Ej. Mariana López" autocomplete="name" required />
+          </label>
+
+          <fieldset class="field toggle">
+            <legend>¿Vienes?</legend>
+            <label><input type="radio" name="asiste" value="si" checked /><span>¡Sí, ahí estaré! 💃</span></label>
+            <label><input type="radio" name="asiste" value="no" /><span>No podré 🥺</span></label>
+          </fieldset>
+
+          <div class="field" id="personasField">
+            <span>¿Cuántas personas?</span>
+            <div class="stepper">
+              <button type="button" id="minus" aria-label="Menos">−</button>
+              <output id="personas" name="personas">1</output>
+              <button type="button" id="plus" aria-label="Más">+</button>
+            </div>
+          </div>
+
+          <label class="field">
+            <span>🎵 Canción que no puede faltar</span>
+            <input type="text" name="cancion" placeholder="Ej. Flowers – Miley Cyrus" />
+          </label>
+
+          <label class="field">
+            <span>Mensaje para Vale <small>(opcional)</small></span>
+            <textarea name="mensaje" rows="3" placeholder="Escribe algo bonito…"></textarea>
+          </label>
+
+          <p class="form__error" id="formError" role="alert"></p>
+          <button type="submit" class="btn btn--primary btn--block">Confirmar por WhatsApp</button>
+        </form>
+
+        <div class="rsvp__done" id="rsvpDone" hidden>
+          <div class="rsvp__done-emoji" id="doneEmoji">🥳</div>
+          <h3 id="doneTitle">¡Gracias!</h3>
+          <p id="doneText">Se abrió WhatsApp con tu confirmación. ¡Solo presiona enviar!</p>
+          <button class="btn btn--soft" id="editRsvp">Editar respuesta</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <img src="assets/img/portada.jpg" alt="" class="footer__img" loading="lazy" />
+    <div class="footer__content">
+      <p class="footer__name">Valentina</p>
+      <p>XV años · 20 de marzo de 2027</p>
+      <small>Invitación demo · hecha con ♡</small>
+    </div>
+  </footer>
+
+  <!-- Botón flotante -->
+  <a href="#rsvp" class="fab" id="fab" aria-label="Confirmar asistencia">Confirmar 🎀</a>
+
+  <!-- Visor de fotos -->
+  <div class="lightbox" id="lightbox" hidden>
+    <button class="lightbox__close" id="lbClose" aria-label="Cerrar">✕</button>
+    <img id="lbImg" alt="" />
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
