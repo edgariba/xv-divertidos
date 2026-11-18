@@ -6,7 +6,7 @@
 const CONFIG = {
   nombre: "Valentina",
   fechaEvento: "2027-03-20T20:00:00-06:00", // hora de la fiesta (Ciudad de México)
-  whatsapp: "5215512345678",                 // número que recibe las confirmaciones (con lada, sin +)
+  whatsapp: "5217721486864",                 // número que recibe las confirmaciones (con lada, sin +)
   maxPersonas: 4,                            // límite si el link no trae ?pases=
   hashtag: "#ValeXV",
   calendario: {

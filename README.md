@@ -8,6 +8,7 @@ Todo es estático (HTML + CSS + JS, sin librerías), listo para **GitHub Pages**
 
 ```
 index.html      → contenido de la invitación
+generador.html  → herramienta para crear los links por invitado
 css/styles.css  → estilos y colores (variables en :root)
 js/main.js      → lógica; la configuración está en CONFIG al inicio
 assets/img/     → fotos (reemplázalas por las reales con el mismo nombre)
@@ -27,6 +28,18 @@ Agrega parámetros a la URL para saludar al invitado y limitar sus pases:
 ```
 https://TU-USUARIO.github.io/xv-divertidos/?invitado=Familia%20Pérez&pases=3
 ```
+
+### Generador de links (`generador.html`)
+
+En lugar de armar cada link a mano, abre **`https://TU-USUARIO.github.io/xv-divertidos/generador.html`** y escribe la lista de invitados, uno por renglón:
+
+```
+Familia Pérez, 3, 55 1234 5678
+Tía Lupe, 1
+Los García, 5
+```
+
+(`Nombre, lugares, teléfono`; lugares y teléfono son opcionales.) Para cada invitado obtienes su link, un botón para **probarlo**, otro para **enviarlo por WhatsApp** con un mensaje editable, y puedes **copiar todos** o **descargarlos en CSV** (se abre en Excel). La lista se guarda solo en el navegador de quien la usa; la página no está enlazada desde la invitación y pide a los buscadores no indexarla.
 
 ## Publicar en GitHub Pages
 

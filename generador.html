@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Generador de links · XV</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,400&family=Nunito:wght@400;600;800&family=Caveat:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream: #fffaf6; --blush: #fdeef4; --pink: #f9cfe0; --pink-deep: #ec8fb4;
+      --lilac: #dcccf6; --lilac-deep: #9b82c9; --mint: #c9eedf; --sky: #cfe6fb; --butter: #fff0b8;
+      --ink: #4b3c5e; --ink-soft: #7d6e90; --line: #eadcf0;
+      --shadow: 0 18px 40px -18px rgba(120, 80, 150, .35);
+      --wa: #25d366;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: "Nunito", system-ui, sans-serif; color: var(--ink); line-height: 1.5;
+      background: linear-gradient(160deg, var(--blush), #f3ecfd 55%, #eaf6f8); min-height: 100vh;
+    }
+    [hidden] { display: none !important; }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 40px 16px 80px; }
+    header { text-align: center; margin-bottom: 28px; }
+    .hand { font-family: "Caveat", cursive; font-size: 1.6rem; color: var(--pink-deep); margin: 0; }
+    h1 { font-family: "Fraunces", serif; font-weight: 600; font-size: clamp(2rem, 6vw, 2.8rem); margin: 0 0 6px; line-height: 1.1; }
+    h1 em { font-weight: 400; color: var(--lilac-deep); }
+    header p { color: var(--ink-soft); margin: 0 auto; max-width: 560px; }
+
+    .card { background: #fff; border-radius: 24px; box-shadow: var(--shadow); padding: 22px; margin-bottom: 20px; }
+    .card h2 { font-family: "Fraunces", serif; font-weight: 600; font-size: 1.3rem; margin: 0 0 4px; display: flex; gap: 10px; align-items: center; }
+    .num { display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--pink); font: 800 .9rem "Nunito"; }
+    .hint { color: var(--ink-soft); font-size: .92rem; margin: 0 0 12px; }
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 720px) { .grid2 { grid-template-columns: 1fr; } }
+
+    label span { display: block; font-weight: 800; font-size: .9rem; margin-bottom: 6px; }
+    input, textarea {
+      width: 100%; font: 600 1rem "Nunito"; color: var(--ink); background: var(--cream);
+      border: 2px solid var(--line); border-radius: 14px; padding: 10px 12px; outline: none;
+    }
+    input:focus, textarea:focus { border-color: var(--lilac-deep); background: #fff; }
+    textarea { resize: vertical; min-height: 150px; line-height: 1.5; }
+    code { background: var(--blush); padding: 1px 6px; border-radius: 6px; font-size: .88em; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: .4em; border: 0; border-radius: 999px; cursor: pointer;
+      font: 800 .92rem "Nunito"; padding: .65em 1.2em; text-decoration: none; color: var(--ink); background: var(--lilac);
+      transition: transform .15s, filter .15s; white-space: nowrap;
+    }
+    .btn:hover { transform: translateY(-2px); filter: brightness(1.03); }
+    .btn--primary { color: #fff; background: linear-gradient(120deg, #f4a3c4, #c3a6ee); box-shadow: 0 10px 22px -10px var(--pink-deep); }
+    .btn--wa { color: #fff; background: var(--wa); }
+    .btn--ghost { background: #fff; border: 2px solid var(--line); }
+    .btn--sm { padding: .5em .9em; font-size: .85rem; }
+    .toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 12px; }
+    .count { margin-left: auto; font-weight: 800; color: var(--ink-soft); }
+
+    .list { display: grid; gap: 12px; }
+    .guest {
+      border: 2px solid var(--line); border-radius: 18px; padding: 14px; display: grid; gap: 10px;
+      grid-template-columns: 1fr auto; align-items: center; background: var(--cream);
+    }
+    .guest__name { font-weight: 800; font-size: 1.05rem; }
+    .chip { display: inline-block; font-size: .78rem; font-weight: 800; padding: 2px 10px; border-radius: 999px; background: var(--mint); margin-left: 6px; vertical-align: middle; }
+    .chip--tel { background: var(--sky); }
+    .chip--warn { background: var(--butter); }
+    .guest__link { grid-column: 1 / -1; font-size: .82rem; color: var(--ink-soft); word-break: break-all; background: #fff; border-radius: 10px; padding: 6px 10px; }
+    .guest__actions { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    @media (max-width: 600px) { .guest { grid-template-columns: 1fr; } .guest__actions { justify-content: flex-start; } }
+    .empty { text-align: center; color: var(--ink-soft); padding: 24px; border: 2px dashed var(--line); border-radius: 18px; }
+
+    .toast {
+      position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 30px); opacity: 0;
+      background: var(--ink); color: #fff; font-weight: 800; padding: 10px 18px; border-radius: 999px;
+      transition: .25s; pointer-events: none; z-index: 10;
+    }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <p class="hand">herramienta para la festejada ✿</p>
+      <h1>Generador de <em>links</em></h1>
+      <p>Escribe la lista de invitados y obtén un link personalizado para cada familia, listo para mandar por WhatsApp.</p>
+    </header>
+
+    <section class="card">
+      <h2><span class="num">1</span> Tu invitación</h2>
+      <p class="hint">La dirección donde está publicada la invitación.</p>
+      <label><span>Link de la invitación</span><input id="baseUrl" type="url" /></label>
+    </section>
+
+    <section class="card">
+      <h2><span class="num">2</span> Lista de invitados</h2>
+      <p class="hint">
+        Un invitado por renglón: <code>Nombre, lugares, teléfono</code>. Los lugares y el teléfono son opcionales.
+        Si pones teléfono, el botón de WhatsApp abre el chat de esa persona directamente.
+      </p>
+      <div class="grid2">
+        <label><span>Invitados</span>
+          <textarea id="guests" placeholder="Familia Pérez, 3, 55 1234 5678&#10;Tía Lupe, 1&#10;Los García, 5"></textarea>
+        </label>
+        <label><span>Mensaje de WhatsApp</span>
+          <textarea id="message"></textarea>
+          <small class="hint">Usa <code>{nombre}</code>, <code>{lugares}</code> y <code>{link}</code>; se reemplazan por los datos de cada invitado.</small>
+        </label>
+      </div>
+      <div class="toolbar">
+        <button class="btn btn--ghost btn--sm" id="example">Cargar ejemplo</button>
+        <button class="btn btn--ghost btn--sm" id="clear">Borrar lista</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2><span class="num">3</span> Links listos</h2>
+      <p class="hint">Copia o envía cada link. Con “Probar” ves la invitación tal como la verá esa familia.</p>
+      <div class="toolbar" style="margin:0 0 14px">
+        <button class="btn btn--primary" id="copyAll">📋 Copiar todos</button>
+        <button class="btn" id="csv">⬇️ Descargar Excel (CSV)</button>
+        <span class="count" id="count"></span>
+      </div>
+      <div class="list" id="list"></div>
+    </section>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const $ = (s) => document.querySelector(s);
+    const DEFAULT_BASE = new URL("./", location.href).href.startsWith("http")
+      ? new URL("./", location.href).href
+      : "https://edgariba.github.io/xv-divertidos/";
+    const DEFAULT_MSG =
+      "¡Hola, {nombre}! 🎀\nCon mucho cariño te comparto la invitación a mis XV años. " +
+      "Te reservamos {lugares} 🎟️\n\nÁbrela aquí 👉 {link}\n\n¡Confirma tu asistencia desde la invitación! 💌";
+    const EXAMPLE = "Familia Pérez, 3, 55 1234 5678\nTía Lupe, 1\nLos García, 5\nMariana López";
+
+    // ---------- Guardar en este navegador ----------
+    const store = {
+      get(k, d) { try { return localStorage.getItem("xvgen:" + k) ?? d; } catch { return d; } },
+      set(k, v) { try { localStorage.setItem("xvgen:" + k, v); } catch {} },
+    };
+    $("#baseUrl").value = store.get("base", DEFAULT_BASE);
+    $("#guests").value = store.get("guests", "");
+    $("#message").value = store.get("message", DEFAULT_MSG);
+
+    // ---------- Lógica ----------
+    function parse(text) {
+      return text.split("\n").map((line) => line.trim()).filter(Boolean).map((line) => {
+        const [nombre = "", pasesRaw = "", telRaw = ""] = line.split(",").map((s) => s.trim());
+        const pases = parseInt(pasesRaw, 10);
+        let tel = telRaw.replace(/\D/g, "");
+        if (tel.length === 10) tel = "52" + tel;          // número de México sin lada de país
+        return { nombre, pases: pases > 0 ? pases : null, tel };
+      }).filter((g) => g.nombre);
+    }
+
+    function buildLink(g) {
+      let url;
+      try { url = new URL($("#baseUrl").value.trim() || DEFAULT_BASE); }
+      catch { url = new URL(DEFAULT_BASE); }
+      url.searchParams.set("invitado", g.nombre);
+      if (g.pases) url.searchParams.set("pases", g.pases);
+      else url.searchParams.delete("pases");
+      return url.href;
+    }
+
+    function buildMessage(g, link) {
+      const lugares = g.pases ? `${g.pases} ${g.pases === 1 ? "lugar" : "lugares"}` : "tu lugar";
+      return $("#message").value
+        .replaceAll("{nombre}", g.nombre)
+        .replaceAll("{lugares}", lugares)
+        .replaceAll("{link}", link);
+    }
+
+    const esc = (s) => s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+    let current = [];
+    function render() {
+      current = parse($("#guests").value).map((g) => {
+        const link = buildLink(g);
+        return { ...g, link, msg: buildMessage(g, link) };
+      });
+      $("#count").textContent = current.length
+        ? `${current.length} invitado${current.length === 1 ? "" : "s"} · ${current.reduce((a, g) => a + (g.pases || 0), 0)} lugares`
+        : "";
+      $("#list").innerHTML = current.length
+        ? current.map((g, i) => `
+          <article class="guest">
+            <div>
+              <span class="guest__name">${esc(g.nombre)}</span>
+              ${g.pases ? `<span class="chip">🎟️ ${g.pases}</span>` : `<span class="chip chip--warn">lugares sin definir</span>`}
+              ${g.tel ? `<span class="chip chip--tel">📱 +${g.tel}</span>` : ""}
+            </div>
+            <div class="guest__actions">
+              <button class="btn btn--sm" data-copy="${i}">Copiar</button>
+              <a class="btn btn--sm btn--ghost" href="${esc(g.link)}" target="_blank" rel="noopener">Probar</a>
+              <a class="btn btn--sm btn--wa" target="_blank" rel="noopener"
+                 href="https://wa.me/${g.tel}?text=${encodeURIComponent(g.msg)}">WhatsApp</a>
+            </div>
+            <div class="guest__link">${esc(g.link)}</div>
+          </article>`).join("")
+        : `<div class="empty">Escribe tu lista de invitados arriba ✍️<br>o toca “Cargar ejemplo”.</div>`;
+      store.set("base", $("#baseUrl").value);
+      store.set("guests", $("#guests").value);
+      store.set("message", $("#message").value);
+    }
+
+    let toastTimer;
+    function toast(text) {
+      const t = $("#toast");
+      t.textContent = text;
+      t.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => t.classList.remove("show"), 1800);
+    }
+
+    async function copy(text, okMsg) {
+      try { await navigator.clipboard.writeText(text); }
+      catch {
+        const ta = Object.assign(document.createElement("textarea"), { value: text });
+        document.body.appendChild(ta); ta.select(); document.execCommand("copy"); ta.remove();
+      }
+      toast(okMsg);
+    }
+
+    ["#baseUrl", "#guests", "#message"].forEach((s) => $(s).addEventListener("input", render));
+    $("#example").addEventListener("click", () => { $("#guests").value = EXAMPLE; render(); });
+    $("#clear").addEventListener("click", () => {
+      if ($("#guests").value && !confirm("¿Borrar toda la lista de invitados?")) return;
+      $("#guests").value = ""; render();
+    });
+    $("#list").addEventListener("click", (e) => {
+      const b = e.target.closest("[data-copy]");
+      if (b) copy(current[b.dataset.copy].msg, "Mensaje copiado ♡");
+    });
+    $("#copyAll").addEventListener("click", () => {
+      if (!current.length) return toast("Primero agrega invitados");
+      copy(current.map((g) => `${g.nombre}: ${g.link}`).join("\n"), "Todos los links copiados ♡");
+    });
+    $("#csv").addEventListener("click", () => {
+      if (!current.length) return toast("Primero agrega invitados");
+      const q = (v) => `"${String(v ?? "").replaceAll('"', '""')}"`;
+      const rows = [["Invitado", "Lugares", "Teléfono", "Link"], ...current.map((g) => [g.nombre, g.pases ?? "", g.tel, g.link])];
+      const blob = new Blob(["﻿" + rows.map((r) => r.map(q).join(",")).join("\r\n")], { type: "text/csv;charset=utf-8" });
+      const a = Object.assign(document.createElement("a"), { href: URL.createObjectURL(blob), download: "links-invitados.csv" });
+      a.click(); URL.revokeObjectURL(a.href);
+    });
+
+    render();
+  </script>
+</body>
+</html>
